@@ -6,12 +6,10 @@ import (
 	"time"
 )
 
-func Query(query string) *http.Response {
+func Query(url string) *http.Response {
 	ch := make(chan *http.Response)
 	go func() {
-		fmt.Print("Looking for answer")
-		resp, _ := http.Get("https://search.yahoo.com/search?p=" + query)
-		resp.Body.Close()
+		resp, _ := http.Get(url)
 		ch <- resp
 	}()
 	for {

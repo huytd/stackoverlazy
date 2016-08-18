@@ -39,7 +39,7 @@ var (
 func Apply(input string) string {
 	out := input
 	for i := 1; i < len(INPUT_TAGS); i++ {
-		re := regexp.MustCompile(fmt.Sprintf(`\<%s\>(.*)\<\/%s\>`, INPUT_TAGS[i], INPUT_TAGS[i]))
+		re := regexp.MustCompile(fmt.Sprintf(`(?s)\<%s\>(.*?)<\/%s\>`, INPUT_TAGS[i], INPUT_TAGS[i]))
 		out = re.ReplaceAllString(out, TERM_STYLE[i]+"$1"+TERM_RESET)
 	}
 	return out
