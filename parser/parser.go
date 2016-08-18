@@ -48,7 +48,13 @@ func ParseAnswer(input *http.Response) string {
 	answer = reAnswer.ReplaceAllString(answer, "$1")
 
 	reAnswer = regexp.MustCompile(`(?s)\<pre\>(.*?)\<\/pre\>`)
-	answer = reAnswer.ReplaceAllString(answer, "\n$1\n")
+	answer = reAnswer.ReplaceAllString(answer, "$1")
+
+	reAnswer = regexp.MustCompile(`&lt;`)
+	answer = reAnswer.ReplaceAllString(answer, "<")
+
+	reAnswer = regexp.MustCompile(`&gt;`)
+	answer = reAnswer.ReplaceAllString(answer, ">")
 
 	reAnswer = regexp.MustCompile(`\<a href=\"(.*?)\"\>.*?\<\/a\>`)
 	answer = reAnswer.ReplaceAllString(answer, "<blue>$1</blue>")
