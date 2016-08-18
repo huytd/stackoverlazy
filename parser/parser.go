@@ -52,6 +52,12 @@ func ParseAnswer(input *http.Response) string {
 	reAnswer = regexp.MustCompile(`(?s)\<em\>(.*?)\<\/em\>`)
 	answer = reAnswer.ReplaceAllString(answer, "<cyan>$1</cyan>")
 
+	reAnswer = regexp.MustCompile(`(?s)\<sup\>(.*?)\<\/sup\>`)
+	answer = reAnswer.ReplaceAllString(answer, "<cyan>$1</cyan>")
+
+	reAnswer = regexp.MustCompile(`(?s)\<(h1|h2|h3|h4|h5|h6)\>(.*?)\<\/(h1|h2|h3|h4|h5|h6)\>`)
+	answer = reAnswer.ReplaceAllString(answer, "<cyan><u>$2</u></cyan>")
+
 	reAnswer = regexp.MustCompile(`(?s)\<blockquote\>(.*?)\<\/blockquote\>`)
 	answer = reAnswer.ReplaceAllString(answer, "<green>$1</green>")
 

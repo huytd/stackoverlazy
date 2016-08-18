@@ -28,6 +28,7 @@ func main() {
 				answer := parser.ParseAnswer(stackOverflowResponse)
 				fmt.Println("\n")
 				fmt.Println(colors.Apply(answer))
+				fmt.Println(colors.Apply("\n<green><u>See more:</u></green> <blue>" + stackOverflowURL + "</blue>"))
 				return
 			}
 		}
