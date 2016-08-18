@@ -82,7 +82,7 @@ func ParseAnswer(input *http.Response) string {
 	reAnswer = regexp.MustCompile(`(?s)\<(ul|ol)\>(.*?)\<\/(ul|ol)\>`)
 	answer = reAnswer.ReplaceAllString(answer, "$2")
 
-	reAnswer = regexp.MustCompile(`\<li\>(.*?)\<\/li\>`)
+	reAnswer = regexp.MustCompile(`(?s)\<li\>(.*?)\<\/li\>`)
 	answer = reAnswer.ReplaceAllString(answer, "  <green>-</green> $1")
 
 	output := "<green><u>Question:</u></green> " + question + "\n\n"
