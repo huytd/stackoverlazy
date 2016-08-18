@@ -31,7 +31,10 @@ func main() {
 				return
 			}
 		}
+		fmt.Println("\n")
 		fmt.Println(colors.Apply("<red>No answer found! Sorry buddy! You have to solve it yourself...</red>"))
+		return
 	}
+	fmt.Println("\n")
 	fmt.Println(colors.Apply("<red>Unable to search for answer! Please try again!</red>"))
 }
