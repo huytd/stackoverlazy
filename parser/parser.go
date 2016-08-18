@@ -30,10 +30,18 @@ func ParseAnswer(input *http.Response) string {
 	html := string(b[:])
 
 	reQuestion := regexp.MustCompile(`class=\"question-hyperlink\"\>(.*?)\<\/a\>`)
-	question := reQuestion.FindStringSubmatch(html)[1]
+	question := ""
+	questionArray := reQuestion.FindStringSubmatch(html)
+	if len(questionArray) > 1 {
+		question = questionArray[1]
+	}
 
 	reAnswer := regexp.MustCompile(`(?s)class=\"answercell\"\>.*?itemprop=\"text\"\>(.*?)\<\/div\>`)
-	answer := reAnswer.FindStringSubmatch(html)[1]
+	answer := ""
+	answerArray := reAnswer.FindStringSubmatch(html)
+	if len(answerArray) > 1 {
+		answer = answerArray[1]
+	}
 
 	reAnswer = regexp.MustCompile(`(?s)\<code\>(.*?)\<\/code\>`)
 	answer = reAnswer.ReplaceAllString(answer, "<yellow>$1</yellow>")
@@ -61,6 +69,15 @@ func ParseAnswer(input *http.Response) string {
 
 	reAnswer = regexp.MustCompile(`\<a href=\"(.*?)\"\>.*?\<\/a\>`)
 	answer = reAnswer.ReplaceAllString(answer, "<blue>$1</blue>")
+
+	reAnswer = regexp.MustCompile(`\".rel=\"nofollow`)
+	answer = reAnswer.ReplaceAllString(answer, "")
+
+	reAnswer = regexp.MustCompile(`(?s)\<(ul|ol)\>(.*?)\<\/(ul|ol)\>`)
+	answer = reAnswer.ReplaceAllString(answer, "$2")
+
+	reAnswer = regexp.MustCompile(`\<li\>(.*?)\<\/li\>`)
+	answer = reAnswer.ReplaceAllString(answer, "  <green>-</green> $1")
 
 	output := "<green><u>Question:</u></green> " + question + "\n\n"
 	output += "<green><u>Answer:</u></green>\n" + answer
