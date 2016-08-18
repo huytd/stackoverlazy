@@ -19,7 +19,7 @@ func main() {
 	query := "stackoverflow+"
 	query += strings.Join(args[:], "+")
 	fmt.Print("Looking for the best answer")
-	searchResponse := search.Query("https://search.yahoo.com/search?p=" + query)
+	searchResponse := search.Query("https://google.com/search?p=" + query)
 	if searchResponse != nil {
 		stackOverflowURL := parser.ParseURL(searchResponse)
 		if stackOverflowURL != "" {
