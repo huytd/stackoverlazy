@@ -4,6 +4,8 @@ Search for StackOverflow solution right in your terminal with colorized output.
 
 Inspired by: https://github.com/chavdim/qstack
 
+![](screenshot.png)
+
 ## Install
 
 You can install `stackoverlazy` easily via `go get`:
