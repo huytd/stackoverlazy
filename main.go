@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/huytd/stackoverlazy/colors"
+	"github.com/huytd/stackoverlazy/search"
 )
 
 func main() {
@@ -16,4 +17,10 @@ func main() {
 	}
 	query := "stackoverflow+"
 	query += strings.Join(args[:], "+")
+	searchResponse := search.Query(query)
+	if searchResponse != nil {
+
+	} else {
+		fmt.Println(colors.Apply("<red>Unable to search for answer! Please try again!</red>"))
+	}
 }
