@@ -9,7 +9,10 @@ import (
 func Query(url string) *http.Response {
 	ch := make(chan *http.Response)
 	go func() {
-		resp, _ := http.Get(url)
+		resp, err := http.Get(url)
+		if err != nil {
+			ch <- nil
+		}
 		ch <- resp
 	}()
 	for {
