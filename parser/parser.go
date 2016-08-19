@@ -7,6 +7,9 @@ import (
 )
 
 func ParseURL(input *http.Response) string {
+	if input == nil {
+		return ""
+	}
 	b, err := ioutil.ReadAll(input.Body)
 	defer input.Body.Close()
 	if err != nil {
@@ -22,6 +25,9 @@ func ParseURL(input *http.Response) string {
 }
 
 func ParseAnswer(input *http.Response) string {
+	if input == nil {
+		return ""
+	}
 	b, err := ioutil.ReadAll(input.Body)
 	defer input.Body.Close()
 	if err != nil {
