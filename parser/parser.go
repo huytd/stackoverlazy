@@ -70,8 +70,8 @@ func ParseAnswer(input *http.Response) string {
 	reAnswer = regexp.MustCompile(`(?s)\<p\>(.*?)\<\/p\>`)
 	answer = reAnswer.ReplaceAllString(answer, "$1")
 
-	reAnswer = regexp.MustCompile(`(?s)\<pre\>(.*?)\<\/pre\>`)
-	answer = reAnswer.ReplaceAllString(answer, "$1")
+	reAnswer = regexp.MustCompile(`(?s)\<pre(.*?)\>(.*?)\<\/pre\>`)
+	answer = reAnswer.ReplaceAllString(answer, "$2")
 
 	reAnswer = regexp.MustCompile(`&lt;`)
 	answer = reAnswer.ReplaceAllString(answer, "<")
