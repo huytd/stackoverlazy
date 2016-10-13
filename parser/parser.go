@@ -49,29 +49,29 @@ func ParseAnswer(input *http.Response) string {
 		answer = answerArray[1]
 	}
 
-	reAnswer = regexp.MustCompile(`(?s)\<code\>(.*?)\<\/code\>`)
-	answer = reAnswer.ReplaceAllString(answer, "<yellow>$1</yellow>")
+	reAnswer = regexp.MustCompile(`(?s)\<code(\s+.*?)?\>(.*?)\<\/code\>`)
+	answer = reAnswer.ReplaceAllString(answer, "<yellow>$2</yellow>")
 
-	reAnswer = regexp.MustCompile(`\<strong\>(.*?)\<\/strong\>`)
-	answer = reAnswer.ReplaceAllString(answer, "<cyan>$1</cyan>")
+	reAnswer = regexp.MustCompile(`\<strong(\s+.*?)?\>(.*?)\<\/strong\>`)
+	answer = reAnswer.ReplaceAllString(answer, "<cyan>$2</cyan>")
 
-	reAnswer = regexp.MustCompile(`(?s)\<em\>(.*?)\<\/em\>`)
-	answer = reAnswer.ReplaceAllString(answer, "<cyan>$1</cyan>")
+	reAnswer = regexp.MustCompile(`(?s)\<em(\s+.*?)?\>(.*?)\<\/em\>`)
+	answer = reAnswer.ReplaceAllString(answer, "<cyan>$2</cyan>")
 
-	reAnswer = regexp.MustCompile(`(?s)\<sup\>(.*?)\<\/sup\>`)
-	answer = reAnswer.ReplaceAllString(answer, "<cyan>$1</cyan>")
+	reAnswer = regexp.MustCompile(`(?s)\<sup(\s+.*?)?\>(.*?)\<\/sup\>`)
+	answer = reAnswer.ReplaceAllString(answer, "<cyan>$2</cyan>")
 
-	reAnswer = regexp.MustCompile(`(?s)\<(h1|h2|h3|h4|h5|h6)\>(.*?)\<\/(h1|h2|h3|h4|h5|h6)\>`)
-	answer = reAnswer.ReplaceAllString(answer, "<cyan><u>$2</u></cyan>")
+	reAnswer = regexp.MustCompile(`(?s)\<(h1|h2|h3|h4|h5|h6)(\s+.*?)?\>(.*?)\<\/(h1|h2|h3|h4|h5|h6)\>`)
+	answer = reAnswer.ReplaceAllString(answer, "<cyan><u>$3</u></cyan>")
 
-	reAnswer = regexp.MustCompile(`(?s)\<blockquote\>(.*?)\<\/blockquote\>`)
-	answer = reAnswer.ReplaceAllString(answer, "<green>$1</green>")
+	reAnswer = regexp.MustCompile(`(?s)\<blockquote(\s+.*?)?\>(.*?)\<\/blockquote\>`)
+	answer = reAnswer.ReplaceAllString(answer, "<green>$2</green>")
 
-	reAnswer = regexp.MustCompile(`(?s)\<p\>(.*?)\<\/p\>`)
-	answer = reAnswer.ReplaceAllString(answer, "$1")
+	reAnswer = regexp.MustCompile(`(?s)\<p(\s+.*?)?\>(.*?)\<\/p\>`)
+	answer = reAnswer.ReplaceAllString(answer, "$2")
 
-	reAnswer = regexp.MustCompile(`(?s)\<pre\>(.*?)\<\/pre\>`)
-	answer = reAnswer.ReplaceAllString(answer, "$1")
+	reAnswer = regexp.MustCompile(`(?s)\<pre(\s+.*?)?\>(.*?)\<\/pre\>`)
+	answer = reAnswer.ReplaceAllString(answer, "$2")
 
 	reAnswer = regexp.MustCompile(`&lt;`)
 	answer = reAnswer.ReplaceAllString(answer, "<")
@@ -79,17 +79,17 @@ func ParseAnswer(input *http.Response) string {
 	reAnswer = regexp.MustCompile(`&gt;`)
 	answer = reAnswer.ReplaceAllString(answer, ">")
 
-	reAnswer = regexp.MustCompile(`\<a href=\"(.*?)\"\>.*?\<\/a\>`)
-	answer = reAnswer.ReplaceAllString(answer, "<blue>$1</blue>")
+	reAnswer = regexp.MustCompile(`\<a(\s+.*?)?href=\"(.*?)\"\>.*?\<\/a\>`)
+	answer = reAnswer.ReplaceAllString(answer, "<blue>$2</blue>")
 
 	reAnswer = regexp.MustCompile(`\".rel=\"nofollow`)
 	answer = reAnswer.ReplaceAllString(answer, "")
 
-	reAnswer = regexp.MustCompile(`(?s)\<(ul|ol)\>(.*?)\<\/(ul|ol)\>`)
-	answer = reAnswer.ReplaceAllString(answer, "$2")
+	reAnswer = regexp.MustCompile(`(?s)\<(ul|ol)(\s+.*?)?\>(.*?)\<\/(ul|ol)\>`)
+	answer = reAnswer.ReplaceAllString(answer, "$3")
 
-	reAnswer = regexp.MustCompile(`(?s)\<li\>(.*?)\<\/li\>`)
-	answer = reAnswer.ReplaceAllString(answer, "  <green>-</green> $1")
+	reAnswer = regexp.MustCompile(`(?s)\<li(\s+.*?)?\>(.*?)\<\/li\>`)
+	answer = reAnswer.ReplaceAllString(answer, "  <green>-</green> $2")
 
 	reAnswer = regexp.MustCompile(`\<\/?hr\/?\>`)
 	answer = reAnswer.ReplaceAllString(answer, "------------------------------------------------------------")
