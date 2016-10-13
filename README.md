@@ -19,7 +19,7 @@ go get github.com/huytd/stackoverlazy
 In your terminal, enter `stackoverlazy` command following with the question you want to search. For example:
 
 ```sh
-stackoverlazy my code didn't compile
+stackoverlazy my code didn\'t compile
 
 stackoverlazy css vertical align
 
