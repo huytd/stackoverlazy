@@ -16,7 +16,7 @@ func ParseURL(input *http.Response) string {
 		return ""
 	}
 	html := string(b[:])
-	re := regexp.MustCompile(`http\:\/\/stackoverflow\.com.*?\"`)
+	re := regexp.MustCompile(`http(?:s)?\:\/\/stackoverflow\.com.*?\"`)
 	matches := re.FindString(html)
 	if len(matches) <= 0 {
 		return ""
