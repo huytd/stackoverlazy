@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"io"
-	"fmt"
 )
 
 func TestParseURLWithNilInput(t *testing.T) {
