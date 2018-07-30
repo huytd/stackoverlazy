@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"io"
+	"fmt"
 )
 
 func TestParseURLWithNilInput(t *testing.T) {
@@ -32,7 +33,7 @@ func TestParseURLParseHttpsUrl(t *testing.T) {
 
 func fakeHtml() *http.Response {
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "<html><body><a href=\"https://stackoverflow.com\"></a><a href=\"http://stackoverflow.com\"></a></body></html>")
+		io.WriteString(w, "<html><body><a href=\"https://stackoverflow.com\"></a><a href=\"https://stackoverflow.com\"></a></body></html>")
 	}
 
 	req := httptest.NewRequest("GET", "http://google.com/search?q=stackoverflow+sample", nil)
